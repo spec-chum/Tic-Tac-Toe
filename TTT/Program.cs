@@ -1,21 +1,39 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TTT
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
+            var board = new Board();
+            var playerX = new Player('X', board);
+            var playerO = new Player('O', board);
+            var currentPlayer = playerO;
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+            board.Draw();
+
+            while (!board.CheckWinCondition(currentPlayer))
+            {
+                currentPlayer = currentPlayer == playerX ? playerO : playerX;
+
+                do
+                {
+                    currentPlayer.GetMove();
+                } while (!currentPlayer.IsValidMove);
+
+                board.Draw();
+            }
+
+            Console.SetCursorPosition(0, 8);
+            if (board.SpacesLeft == -1)
+            {
+                Console.WriteLine("Draw!\n\n");
+            }
+            else
+            {
+                Console.WriteLine($"{currentPlayer.Symbol} wins!\n\n");
+            }
         }
     }
 }
