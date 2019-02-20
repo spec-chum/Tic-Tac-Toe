@@ -4,11 +4,15 @@ namespace TTT
 {
     internal class Board
     {
-        private readonly char[,] Grid;
+        private readonly char[][] Grid = new char[3][]
+        {
+            new char[3],
+            new char[3],
+            new char[3]
+        };
 
         public Board()
         {
-            Grid = new char[3, 3];
             SpacesLeft = 9;
         }
 
@@ -19,25 +23,25 @@ namespace TTT
             for (int i = 0; i < 3; i++)
             {
                 // Check horizontal wins
-                if (Grid[i, 0] == player.Symbol && Grid[i, 1] == player.Symbol && Grid[i, 2] == player.Symbol)
+                if (Grid[i][0] == player.Symbol && Grid[i][1] == player.Symbol && Grid[i][2] == player.Symbol)
                 {
                     return true;
                 }
 
                 // Check vertical wins
-                if (Grid[0, i] == player.Symbol && Grid[1, i] == player.Symbol && Grid[2, i] == player.Symbol)
+                if (Grid[0][i] == player.Symbol && Grid[1][i] == player.Symbol && Grid[2][i] == player.Symbol)
                 {
                     return true;
                 }
             }
 
             // Check diagonals
-            if (Grid[0, 0] == player.Symbol && Grid[1, 1] == player.Symbol && Grid[2, 2] == player.Symbol)
+            if (Grid[0][0] == player.Symbol && Grid[1][1] == player.Symbol && Grid[2][2] == player.Symbol)
             {
                 return true;
             }
 
-            if (Grid[2, 0] == player.Symbol && Grid[1, 1] == player.Symbol && Grid[0, 2] == player.Symbol)
+            if (Grid[2][0] == player.Symbol && Grid[1][1] == player.Symbol && Grid[0][2] == player.Symbol)
             {
                 return true;
             }
@@ -57,19 +61,19 @@ namespace TTT
             Console.CursorVisible = false;
             Console.SetCursorPosition(0, 1);
 
-            Console.WriteLine($" {Grid[0, 0]} | {Grid[1, 0]} | {Grid[2, 0]} ");
+            Console.WriteLine($" {Grid[0][0]} | {Grid[1][0]} | {Grid[2][0]} ");
             Console.WriteLine("---|---|---");
-            Console.WriteLine($" {Grid[0, 1]} | {Grid[1, 1]} | {Grid[2, 1]} ");
+            Console.WriteLine($" {Grid[0][1]} | {Grid[1][1]} | {Grid[2][1]} ");
             Console.WriteLine("---|---|---");
-            Console.WriteLine($" {Grid[0, 2]} | {Grid[1, 2]} | {Grid[2, 2]} ");
+            Console.WriteLine($" {Grid[0][2]} | {Grid[1][2]} | {Grid[2][2]} ");
         }
 
         public bool Update(int i, int j, char symbol)
         {
             // Make sure space is clear
-            if (Grid[i, j] == 0)
+            if (Grid[i][j] == 0)
             {
-                Grid[i, j] = symbol;
+                Grid[i][j] = symbol;
                 SpacesLeft--;
                 return true;
             }

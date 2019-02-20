@@ -34,6 +34,8 @@ namespace TTT
             {
                 Console.WriteLine($"{currentPlayer.Symbol} wins!\n\n");
             }
+
+            Console.ReadLine();
         }
     }
 }
