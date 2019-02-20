@@ -11,12 +11,7 @@ namespace TTT
             new char[3]
         };
 
-        public Board()
-        {
-            SpacesLeft = 9;
-        }
-
-        public int SpacesLeft { get; private set; }
+        public int SpacesLeft { get; private set; } = 9;
 
         public bool CheckWinCondition(Player player)
         {
