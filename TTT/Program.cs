@@ -6,14 +6,13 @@ namespace TTT
     {
         private static void Main()
         {
-            var board = new Board();
-            var playerX = new Player('X', board);
-            var playerO = new Player('O', board);
+            var playerX = new Player('X');
+            var playerO = new Player('O');
             var currentPlayer = playerO;
 
-            board.Draw();
+            Board.Draw();
 
-            while (!board.CheckWinCondition(currentPlayer))
+            while (!Board.CheckWinCondition(currentPlayer))
             {
                 currentPlayer = currentPlayer == playerX ? playerO : playerX;
 
@@ -22,11 +21,11 @@ namespace TTT
                     currentPlayer.GetMove();
                 } while (!currentPlayer.IsValidMove);
 
-                board.Draw();
+                Board.Draw();
             }
 
             Console.SetCursorPosition(0, 8);
-            if (board.SpacesLeft == -1)
+            if (Board.SpacesLeft == -1)
             {
                 Console.WriteLine("Draw!\n\n");
             }

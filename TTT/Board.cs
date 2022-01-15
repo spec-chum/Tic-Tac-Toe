@@ -2,18 +2,18 @@ using System;
 
 namespace TTT
 {
-    internal class Board
+    internal static class Board
     {
-        private readonly char[][] Grid = new char[3][]
-        {
-            new char[3],
-            new char[3],
-            new char[3]
+        private static readonly char[][] Grid = new char[3][]
+        { 
+            new char[3] { ' ', ' ', ' ' },
+            new char[3] { ' ', ' ', ' ' },
+            new char[3] { ' ', ' ', ' ' }
         };
 
-        public int SpacesLeft { get; private set; } = 9;
+        public static int SpacesLeft { get; private set; } = 9;
 
-        public bool CheckWinCondition(Player player)
+        public static bool CheckWinCondition(Player player)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -51,7 +51,7 @@ namespace TTT
             return false;
         }
 
-        public void Draw()
+        public static void Draw()
         {
             Console.CursorVisible = false;
             Console.SetCursorPosition(0, 1);
@@ -63,10 +63,10 @@ namespace TTT
             Console.WriteLine($" {Grid[0][2]} | {Grid[1][2]} | {Grid[2][2]} ");
         }
 
-        public bool Update(int i, int j, char symbol)
+        public static bool Update(int i, int j, char symbol)
         {
             // Make sure space is clear
-            if (Grid[i][j] == 0)
+            if (Grid[i][j] == ' ')
             {
                 Grid[i][j] = symbol;
                 SpacesLeft--;

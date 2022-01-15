@@ -4,12 +4,9 @@ namespace TTT
 {
     internal class Player
     {
-        private readonly Board Board;
-
-        public Player(char symbol, Board gameBoard)
+        public Player(char symbol)
         {
             Symbol = symbol;
-            Board = gameBoard;
         }
 
         public bool IsValidMove { get; private set; }
